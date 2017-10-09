@@ -1,0 +1,49 @@
+var mongo = require('mongodb');
+
+const MongoClient = require('mongodb').MongoClient;
+const url = 'mongodb://localhost:27017/exampleDB';
+
+MongoClient.connect(url, function(err, db){
+	if(err) throw err;
+
+	/* Insert into collection a document */
+//	var myObj1 = [{ name: 'hyperV', last: 'wolf', age: 23 }
+// 				,{ name: 'madonna', last: 'zee', age: 33 }
+//				,{ name: 'kaspersky', last: 'wolf', age: 28 }
+//				,{ name: 'parayiv', last: 'gauss', age: 51 }]
+//	db.collection('customers').insertMany(myObj1, function(err, result){
+//		if(err) throw err;
+//		console.log('Inserted');
+//		db.close();
+//	});
+
+
+	/* find a document  */
+//	db.collection('customers').findOne({}, function(err, result){
+//		if(err) throw err;
+//		console.log(result.name);
+//		db.close();
+//	});
+	/* find a document using query */
+//	var query = { name : 'parayiv'}
+//	db.collection('customers').find(query).toArray(function(err, result){
+//		if(err) throw err;
+//		console.log(result);
+//		db.close();
+//	});
+	/* sort a result */
+	var query = { age : 1}; // 1 for sorting order true;
+	db.collection('customers').find().sort(query).toArray(function(err, result){
+		if(err) throw err;
+		console.log(JSON.stringify(result));
+		db.close();
+	});
+
+//	/* delete a result */
+//	var query = { name : 'hyperv'}; 
+//	db.collection('customers').deleteOne(query, function(err, obj){
+//		if(err) throw err;
+//		console.log('query ' + query + ' deleted');
+//		db.close();
+//	});
+});
